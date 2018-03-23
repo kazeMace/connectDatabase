@@ -11,9 +11,11 @@ public class Test {
         Connection conn = operateDatabase.getConnection();
 
         Statement stmt = conn.createStatement();
-//        ResultSet ss = stmt.execute("");
+        ResultSet ss = stmt.executeQuery("select * from sbi_name_mapping;");
 //        System.out.println(ss);
-
+        while (ss.next()){
+            System.out.println(ss.getString("zhName"));
+        }
     }
 
 }
