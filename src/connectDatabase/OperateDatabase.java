@@ -7,10 +7,6 @@ public class OperateDatabase {
     private String USERNAME = dbSettings.getUSERNAME();
     private String PASS = dbSettings.getPASS();
     private Connection conn = null;
-    private Statement stmt = null;
-
-//    public OperateDatabase(){
-//    }
 
     public Connection getConnection(){
         try {
@@ -22,16 +18,24 @@ public class OperateDatabase {
         }
         return conn;
     }
-
-//    public Statement getStatement(Connection conn){
-//        System.out.println("create Statement...");
-//        try {
-//            stmt = conn.createStatement();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return stmt;
-//    }
+    public Statement getStatement(Connection connection){
+        PreparedStatement pstatement = null;
+        try {
+            pstatement = connection.prepareStatement("");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pstatement;
+    }
+    public ResultSet getResuleSet(PreparedStatement pstatement){
+        ResultSet rs = null;
+        try {
+            rs = pstatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rs;
+    }
 
     public static void close(Connection conn) {
         if (null != conn) {
@@ -42,10 +46,10 @@ public class OperateDatabase {
             }
         }
     }
-    public static void close(Statement stmt) {
-        if (null != stmt) {
+    public static void close(PreparedStatement pstatement) {
+        if (null != pstatement) {
             try {
-                stmt.close();
+                pstatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -62,18 +66,8 @@ public class OperateDatabase {
         }
     }
 
-    public void sql(Statement stmt){
-//        String sql_q = "select * from sbi_objects";
-//        System.out.println(sql_q);
-////        stmt = getStatement(this.conn);
-//        try {
-//            boolean ss = stmt.execute(sql_q);
-//            System.out.println(ss);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-
-
+    public String getUser_id(){
+        return "";
     }
 
 }
